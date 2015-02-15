@@ -1,0 +1,15 @@
+多模匹配+中文+模糊，基于ac算法
+
+在https://github.com/raymanrt/aho-corasick 基础上，根据自己的需要(中文反作弊)主要做了三点修改：
+1）支持中文；
+2）支持*和？通配符。前者意味着任意多个任意字符（小于30个）,后者意味0或1个任意字符
+3）优化了性能，主要是sparseEdgeList
+
+使用方法：
+ WildcardAhoCorasickTree tree =
+                new WildcardAhoCorasickTree(new HashSet<String>(Arrays.asList(new String[] {"人民*中?国", "人民*中国", "你好", "是?中国*大地",
+                        "美*国",
+                        "中国"})));
+
+System.out.println(tree.searchAll("中华人民共和国万万么想到怎么办啊就是中国"));
+System.out.println(tree.searchOne("中华人民共和国万万么想到怎么办啊就是中国"));
